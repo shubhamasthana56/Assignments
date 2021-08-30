@@ -36,7 +36,7 @@ return <div>
       })}
     </React.Fragment>
   </table>}
-  {isEdit && <EmployeeForm data={currentEmpData}></EmployeeForm>}
+  {isEdit && <EmployeeForm data={currentEmpData} isEdit={isEdit} setEditHandler={setEditHandler}></EmployeeForm>}
 
  
 </div>

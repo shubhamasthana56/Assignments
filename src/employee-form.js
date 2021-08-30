@@ -4,10 +4,15 @@ import './employee-form.css';
 import {employee} from './employee-data';
 
 
-export const EmployeeForm = ({data}) => {
+export const EmployeeForm = ({data, isEdit, setEditHandler}) => {
     const [formState, setFormState] = useState(data);
     function saveHandler() {
-        
+        employee.forEach((emp, i) => {
+            if(emp.id === formState.id) {
+                employee[i] = formState
+            }
+        })
+        setEditHandler(false)
     }
     function updateNameHandler(e) {
         setFormState({...formState, name: e.target.value})
@@ -29,7 +34,7 @@ export const EmployeeForm = ({data}) => {
             <div className="form">
             Employee edit
             <div className="form-element">
-                <form>
+                <div>
                     <label>Name: </label><br/>
                     <input value={formState?.name} onChange={updateNameHandler}></input><br/>
                     <label>Designation: </label><br/>
@@ -39,7 +44,7 @@ export const EmployeeForm = ({data}) => {
                     <label>Location: </label><br/>
                     <input value={formState?.location} onChange={updateLocationHandler}></input><br/>
                     <button onClick={saveHandler}>Save</button>
-                </form>
+                </div>
                 
             </div>
         </div>
